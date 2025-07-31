@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
+import { Inter } from "next/font/google";
 import styles from "../styles/Home.module.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [email, setEmail] = useState("");
-  const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
   const [statsCount, setStatsCount] = useState(500);
@@ -16,7 +18,7 @@ export default function Home() {
   };
 
   // 버튼 활성화 상태
-  const isButtonEnabled = validateEmail(email) && isPrivacyChecked;
+  const isButtonEnabled = validateEmail(email);
 
   // 메시지 표시
   const showMessage = (text, type) => {
@@ -35,28 +37,42 @@ export default function Home() {
       return;
     }
 
-    if (!isPrivacyChecked) {
-      showMessage("개인정보 수집 및 이용에 동의해주세요.", "error");
-      return;
-    }
-
     setIsSubmitting(true);
 
-    // 모의 API 호출 (실제로는 Supabase 연동)
-    setTimeout(() => {
-      showMessage(
-        "얼리 액세스 신청이 완료되었습니다! 출시 소식을 이메일로 알려드리겠습니다.",
-        "success"
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/collect-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            email,
+            submitted_at: new Date().toISOString(),
+          }),
+        }
       );
-      setEmail("");
-      setIsPrivacyChecked(false);
-      setIsSubmitting(false);
-      setStatsCount((prev) => prev + 1);
-    }, 2000);
-  };
 
-  const handleDemoClick = () => {
-    showMessage("데모 영상은 곧 공개됩니다!", "info");
+      const data = await response.json();
+
+      if (response.ok) {
+        showMessage(
+          "베타 체험 신청이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
+          "success"
+        );
+        setEmail("");
+        setStatsCount((prev) => prev + 1);
+      } else {
+        showMessage(data.message || "오류가 발생했습니다.", "error");
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
+      showMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,18 +85,16 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
 
-      <div className={styles.container}>
+      <div className={`${styles.container} ${inter.className}`}>
         <div className={styles.content}>
           <div className={styles.leftSection}>
             <div className={styles.mainContent}>
               <h1 className={styles.title}>
-                내 테니스 스윙, 프로와 뭐가 다를까?
+                내 테니스 스윙,
+                <br />
+                프로와 뭐가 다를까?
                 <br />
                 <span className={styles.highlight}>
                   AI 궤적 분석이 답합니다.
@@ -88,16 +102,15 @@ export default function Home() {
               </h1>
 
               <p className={styles.description}>
-                더 이상 막연한 감으로 고민하지 마세요. 당신의 스윙 영상을
-                업로드하면, AI가 프로 선수의 정교한 궤적과 내 스윙을 나란히
-                비교해드립니다. 지금껏 몰랐던 미세한 차이점을 발견하고, 명확하고
-                간단한 피드백으로 오늘부터 달라지는 테니스를 경험하세요.
+                스윙 영상을 업로드하면 AI가 프로 선수와 비교 분석해드립니다.
+                <br />
+                미세한 차이점을 발견하고 명확한 개선점을 제시받으세요.
               </p>
 
               <div className={styles.waitlistSection}>
-                <h3 className={styles.waitlistTitle}>얼리 액세스 신청</h3>
+                <h3 className={styles.waitlistTitle}>베타 체험 신청</h3>
                 <div className={styles.launchBadge}>
-                  🎾 2025년 1분기 출시 예정
+                  🎾 2025년 하반기 출시 예정
                 </div>
 
                 <form className={styles.emailForm} onSubmit={handleSubmit}>
@@ -121,31 +134,9 @@ export default function Home() {
                           : "not-allowed",
                     }}
                   >
-                    {isSubmitting ? "신청 중..." : "얼리 액세스 신청하기"}
+                    {isSubmitting ? "신청 중..." : "베타 체험 신청하기"}
                   </button>
                 </form>
-
-                <div className={styles.privacyNote}>
-                  <input
-                    type="checkbox"
-                    id="privacy"
-                    className={styles.privacyCheckbox}
-                    checked={isPrivacyChecked}
-                    onChange={(e) => setIsPrivacyChecked(e.target.checked)}
-                  />
-                  <label htmlFor="privacy">
-                    개인정보 수집 및 이용에 동의합니다. 언제든 구독 해지
-                    가능합니다.
-                  </label>
-                </div>
-
-                <div className={styles.stats}>
-                  <span className={styles.statsIcon}>👥</span>
-                  <span className={styles.statsText}>
-                    <strong>{statsCount}+</strong> 테니스 선수들이 이미
-                    참여했습니다
-                  </span>
-                </div>
 
                 {message.text && (
                   <div
@@ -168,20 +159,8 @@ export default function Home() {
           <div className={styles.rightSection}>
             <div className={styles.demoContainer}>
               <div className={styles.phoneMockup}>
-                <div className={styles.phoneScreen}>
-                  <div
-                    className={styles.demoPlaceholder}
-                    onClick={handleDemoClick}
-                  >
-                    <div className={styles.demoIcon}>🎾</div>
-                    <p>데모 영상이 들어갈 공간</p>
-                    <small>AI 궤적 분석 화면 미리보기</small>
-                  </div>
-                </div>
+                <div className={styles.phoneScreen}></div>
               </div>
-              <p className={styles.demoCaption}>
-                간단히 영상을 업로드하고 AI 분석을 시작하세요
-              </p>
             </div>
           </div>
         </div>
