@@ -1,0 +1,402 @@
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+/* Left Section */
+.leftSection {
+  padding-right: 2rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #1a2332;
+}
+
+.title .highlight {
+  color: #2e8b57;
+  background: linear-gradient(135deg, #2e8b57, #32cd32);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #6c757d;
+  margin-bottom: 3rem;
+  font-weight: 400;
+}
+
+.waitlistSection {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(46, 139, 87, 0.1);
+}
+
+.waitlistTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1a2332;
+}
+
+.launchBadge {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #32cd32, #adff2f);
+  color: #1a2332;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(50, 205, 50, 0.3);
+}
+
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.emailInput {
+  padding: 1rem 1.5rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: #2e8b57;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
+}
+
+.emailInput::placeholder {
+  color: #6c757d;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #2e8b57, #3cb371);
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 139, 87, 0.4);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.privacyNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.privacyCheckbox {
+  margin-top: 0.25rem;
+  accent-color: #2e8b57;
+}
+
+.privacyNote label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(46, 139, 87, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid #2e8b57;
+}
+
+.statsIcon {
+  font-size: 1.2rem;
+}
+
+.statsText {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.statsText strong {
+  color: #2e8b57;
+  font-weight: 600;
+}
+
+/* Right Section */
+.rightSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.demoContainer {
+  text-align: center;
+}
+
+.phoneMockup {
+  background: linear-gradient(145deg, #2c3e50, #34495e);
+  padding: 1.5rem;
+  border-radius: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.phoneMockup::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  background: #7f8c8d;
+  border-radius: 3px;
+}
+
+.phoneScreen {
+  background: #1a2332;
+  border-radius: 25px;
+  padding: 3rem 2rem;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.phoneScreen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(46, 139, 87, 0.1) 0%,
+    rgba(50, 205, 50, 0.05) 50%,
+    rgba(173, 255, 47, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.demoPlaceholder {
+  text-align: center;
+  color: #ffffff;
+  z-index: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.demoIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.demoPlaceholder p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.demoPlaceholder small {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  color: #adff2f;
+}
+
+.demoCaption {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Message Styles */
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: slideIn 0.3s ease-out;
+}
+
+.messageSuccess {
+  background: rgba(50, 205, 50, 0.1);
+  color: #2e8b57;
+  border: 1px solid rgba(50, 205, 50, 0.3);
+}
+
+.messageError {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.messageInfo {
+  background: rgba(173, 255, 47, 0.1);
+  color: #2e8b57;
+  border: 1px solid rgba(173, 255, 47, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .leftSection,
+  .rightSection {
+    padding: 0;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .phoneMockup {
+    max-width: 300px;
+  }
+
+  .phoneScreen {
+    min-height: 500px;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+
+  .waitlistSection {
+    padding: 2rem;
+  }
+
+  .phoneMockup {
+    max-width: 280px;
+  }
+
+  .phoneScreen {
+    min-height: 450px;
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .waitlistSection {
+    padding: 1.5rem;
+  }
+
+  .emailForm {
+    gap: 0.8rem;
+  }
+
+  .emailInput,
+  .submitBtn {
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title,
+.description,
+.waitlistSection,
+.demoContainer {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.waitlistSection {
+  animation-delay: 0.2s;
+}
+
+.demoContainer {
+  animation-delay: 0.4s;
+}
