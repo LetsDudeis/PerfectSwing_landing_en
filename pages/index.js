@@ -213,6 +213,72 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Reviews Section */}
+        <section className={styles.reviewsSection}>
+          <div className={styles.reviewsContainer}>
+            <h2 className={styles.reviewsTitle}>
+              테니스 플레이어들의 생생한 후기
+            </h2>
+
+            <div className={styles.reviewsGrid}>
+              <div className={styles.reviewCard}>
+                <div className={styles.reviewHeader}>
+                  <div className={styles.reviewerInfo}>
+                    <div className={styles.reviewerAvatar}>김</div>
+                    <div className={styles.reviewerDetails}>
+                      <h4 className={styles.reviewerName}>김○○</h4>
+                      <p className={styles.reviewerLevel}>NTRP 3.5</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
+                </div>
+                <p className={styles.reviewText}>
+                  "혼자 연습할 때마다 제대로 하고 있는지 궁금했는데,
+                  PerfectSwing으로 내 스윙을 분석받고 나서 확실히 개선점을 알 수
+                  있었어요. 프로와 비교해주는 기능이 정말 신기해요!"
+                </p>
+              </div>
+
+              <div className={styles.reviewCard}>
+                <div className={styles.reviewHeader}>
+                  <div className={styles.reviewerInfo}>
+                    <div className={styles.reviewerAvatar}>박</div>
+                    <div className={styles.reviewerDetails}>
+                      <h4 className={styles.reviewerName}>박○○</h4>
+                      <p className={styles.reviewerLevel}>NTRP 3.0</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
+                </div>
+                <p className={styles.reviewText}>
+                  "코트 예약이 어려워서 집에서 빈 스윙만 하고 있었는데, 이
+                  앱으로 그 영상도 분석받을 수 있어서 놀랐어요. 일관성 없던 제
+                  스윙이 많이 안정됐어요. 언제 어디서든 피드백 받을 수 있어서
+                  좋아요."
+                </p>
+              </div>
+
+              <div className={styles.reviewCard}>
+                <div className={styles.reviewHeader}>
+                  <div className={styles.reviewerInfo}>
+                    <div className={styles.reviewerAvatar}>이</div>
+                    <div className={styles.reviewerDetails}>
+                      <h4 className={styles.reviewerName}>이○○</h4>
+                      <p className={styles.reviewerLevel}>NTRP 2.5</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
+                </div>
+                <p className={styles.reviewText}>
+                  "테니스 시작한지 6개월 정도 됐는데, 제대로 치고 있는지 확신이
+                  없었어요. PerfectSwing으로 기본기를 체크받으니까 잘못된 습관을
+                  바로잡을 수 있어서 좋네요!"
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
