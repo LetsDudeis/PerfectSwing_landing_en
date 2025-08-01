@@ -7,8 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState({ text: "", type: "" });
+  const [topIsSubmitting, setTopIsSubmitting] = useState(false);
+  const [bottomIsSubmitting, setBottomIsSubmitting] = useState(false);
+  const [topMessage, setTopMessage] = useState({ text: "", type: "" });
+  const [bottomMessage, setBottomMessage] = useState({ text: "", type: "" });
   const [statsCount, setStatsCount] = useState(500);
 
   // 이메일 유효성 검사
@@ -20,24 +22,32 @@ export default function Home() {
   // 버튼 활성화 상태
   const isButtonEnabled = validateEmail(email);
 
-  // 메시지 표시
-  const showMessage = (text, type) => {
-    setMessage({ text, type });
+  // 상단 메시지 표시
+  const showTopMessage = (text, type) => {
+    setTopMessage({ text, type });
     setTimeout(() => {
-      setMessage({ text: "", type: "" });
+      setTopMessage({ text: "", type: "" });
     }, 5000);
   };
 
-  // 폼 제출 처리
-  const handleSubmit = async (e) => {
+  // 하단 메시지 표시
+  const showBottomMessage = (text, type) => {
+    setBottomMessage({ text, type });
+    setTimeout(() => {
+      setBottomMessage({ text: "", type: "" });
+    }, 5000);
+  };
+
+  // 상단 폼 제출 처리
+  const handleTopSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      showMessage("올바른 이메일 주소를 입력해주세요.", "error");
+      showTopMessage("올바른 이메일 주소를 입력해주세요.", "error");
       return;
     }
 
-    setIsSubmitting(true);
+    setTopIsSubmitting(true);
 
     try {
       const response = await fetch(
@@ -58,20 +68,73 @@ export default function Home() {
       const data = await response.json();
 
       if (response.ok) {
-        showMessage(
+        showTopMessage(
           "베타 체험 신청이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
           "success"
         );
         setEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
-        showMessage(data.message || "오류가 발생했습니다.", "error");
+        showTopMessage(data.message || "오류가 발생했습니다.", "error");
       }
     } catch (error) {
-      console.error("Submit error:", error);
-      showMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.", "error");
+      console.error("Top submit error:", error);
+      showTopMessage(
+        "네트워크 오류가 발생했습니다. 다시 시도해주세요.",
+        "error"
+      );
     } finally {
-      setIsSubmitting(false);
+      setTopIsSubmitting(false);
+    }
+  };
+
+  // 하단 폼 제출 처리
+  const handleBottomSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateEmail(email)) {
+      showBottomMessage("올바른 이메일 주소를 입력해주세요.", "error");
+      return;
+    }
+
+    setBottomIsSubmitting(true);
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/collect-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            email,
+            submitted_at: new Date().toISOString(),
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok) {
+        showBottomMessage(
+          "베타 체험 신청이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
+          "success"
+        );
+        setEmail("");
+        setStatsCount((prev) => prev + 1);
+      } else {
+        showBottomMessage(data.message || "오류가 발생했습니다.", "error");
+      }
+    } catch (error) {
+      console.error("Bottom submit error:", error);
+      showBottomMessage(
+        "네트워크 오류가 발생했습니다. 다시 시도해주세요.",
+        "error"
+      );
+    } finally {
+      setBottomIsSubmitting(false);
     }
   };
 
@@ -114,7 +177,7 @@ export default function Home() {
                     🎾 2025년 하반기 출시 예정
                   </div>
 
-                  <form className={styles.emailForm} onSubmit={handleSubmit}>
+                  <form className={styles.emailForm} onSubmit={handleTopSubmit}>
                     <input
                       type="email"
                       className={styles.emailInput}
@@ -126,31 +189,32 @@ export default function Home() {
                     <button
                       type="submit"
                       className={styles.submitBtn}
-                      disabled={!isButtonEnabled || isSubmitting}
+                      disabled={!isButtonEnabled || topIsSubmitting}
                       style={{
-                        opacity: isButtonEnabled && !isSubmitting ? "1" : "0.6",
+                        opacity:
+                          isButtonEnabled && !topIsSubmitting ? "1" : "0.6",
                         cursor:
-                          isButtonEnabled && !isSubmitting
+                          isButtonEnabled && !topIsSubmitting
                             ? "pointer"
                             : "not-allowed",
                       }}
                     >
-                      {isSubmitting ? "신청 중..." : "베타 체험 신청하기"}
+                      {topIsSubmitting ? "신청 중..." : "베타 체험 신청하기"}
                     </button>
                   </form>
 
-                  {message.text && (
+                  {topMessage.text && (
                     <div
                       className={`${styles.message} ${
                         styles[
                           `message${
-                            message.type.charAt(0).toUpperCase() +
-                            message.type.slice(1)
+                            topMessage.type.charAt(0).toUpperCase() +
+                            topMessage.type.slice(1)
                           }`
                         ]
                       }`}
                     >
-                      {message.text}
+                      {topMessage.text}
                     </div>
                   )}
                 </div>
@@ -279,6 +343,73 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Bottom Email Collection Section */}
+        <section className={styles.bottomEmailSection}>
+          <div className={styles.bottomEmailContainer}>
+            <h2 className={styles.bottomEmailTitle}>
+              내 스윙의 문제점이 궁금하다면?
+            </h2>
+            <p className={styles.bottomEmailSubtitle}>
+              프로 선수와 비교해보고 정확한 개선점을 찾아보세요
+            </p>
+            <form
+              className={styles.bottomEmailForm}
+              onSubmit={handleBottomSubmit}
+            >
+              <input
+                type="email"
+                placeholder="이메일 주소를 입력하세요"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.bottomEmailInput}
+                required
+              />
+              <button
+                type="submit"
+                className={styles.bottomEmailButton}
+                disabled={!isButtonEnabled || bottomIsSubmitting}
+                style={{
+                  opacity: isButtonEnabled && !bottomIsSubmitting ? "1" : "0.6",
+                  cursor:
+                    isButtonEnabled && !bottomIsSubmitting
+                      ? "pointer"
+                      : "not-allowed",
+                }}
+              >
+                {bottomIsSubmitting ? "처리 중..." : "베타 체험 신청하기"}
+              </button>
+
+              {bottomMessage.text && (
+                <div
+                  className={`${styles.message} ${
+                    styles[
+                      `message${
+                        bottomMessage.type.charAt(0).toUpperCase() +
+                        bottomMessage.type.slice(1)
+                      }`
+                    ]
+                  }`}
+                >
+                  {bottomMessage.text}
+                </div>
+              )}
+            </form>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className={styles.footer}>
+          <div className={styles.footerContainer}>
+            <h3 className={styles.footerTitle}>PerfectSwing</h3>
+            <p className={styles.footerSubtitle}>
+              당신만의 AI 스윙 코치, 언제 어디서든 당신과 함께
+            </p>
+            <p className={styles.footerCopyright}>
+              © 2025 PerfectSwing. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </div>
     </>
   );
