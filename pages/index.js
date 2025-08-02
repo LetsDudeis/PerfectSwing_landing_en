@@ -160,7 +160,7 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://perfect-swing.vercel.app/og-image.jpg"
+          content="https://perfect-swing.vercel.app/og-image.jpg?v=20250102"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -176,7 +176,7 @@ export default function Home() {
         />
         <meta
           name="kakao:image"
-          content="https://perfect-swing.vercel.app/og-image.jpg"
+          content="https://perfect-swing.vercel.app/og-image.jpg?v=20250102"
         />
 
         {/* Twitter Card 메타 태그 */}
@@ -191,7 +191,7 @@ export default function Home() {
         />
         <meta
           name="twitter:image"
-          content="https://perfect-swing.vercel.app/og-image.jpg"
+          content="https://perfect-swing.vercel.app/og-image.jpg?v=20250102"
         />
       </Head>
 
