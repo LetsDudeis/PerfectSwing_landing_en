@@ -158,7 +158,13 @@ export default function Home() {
           property="og:description"
           content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
         />
-        <meta property="og:image" content="/og-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://perfect-swing.vercel.app/og-image.jpg"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="PerfectSwing" />
         <meta property="og:url" content="https://perfect-swing.vercel.app" />
         <meta property="og:type" content="website" />
 
@@ -168,7 +174,25 @@ export default function Home() {
           name="kakao:description"
           content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
         />
-        <meta name="kakao:image" content="/og-image.jpg" />
+        <meta
+          name="kakao:image"
+          content="https://perfect-swing.vercel.app/og-image.jpg"
+        />
+
+        {/* Twitter Card 메타 태그 */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PerfectSwing - AI 테니스 자세 교정"
+        />
+        <meta
+          name="twitter:description"
+          content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
+        />
+        <meta
+          name="twitter:image"
+          content="https://perfect-swing.vercel.app/og-image.jpg"
+        />
       </Head>
 
       <div className={`${styles.container} ${inter.className}`}>
