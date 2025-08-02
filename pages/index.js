@@ -148,6 +148,27 @@ export default function Home() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+
+        {/* Open Graph 메타 태그 (카카오톡 링크 공유용) */}
+        <meta
+          property="og:title"
+          content="PerfectSwing - AI 테니스 자세 교정"
+        />
+        <meta
+          property="og:description"
+          content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
+        />
+        <meta property="og:image" content="/og-image.jpg" />
+        <meta property="og:url" content="https://perfect-swing.vercel.app" />
+        <meta property="og:type" content="website" />
+
+        {/* 카카오톡 전용 메타 태그 */}
+        <meta name="kakao:title" content="PerfectSwing - AI 테니스 자세 교정" />
+        <meta
+          name="kakao:description"
+          content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
+        />
+        <meta name="kakao:image" content="/og-image.jpg" />
       </Head>
 
       <div className={`${styles.container} ${inter.className}`}>
