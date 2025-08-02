@@ -364,7 +364,7 @@ export default function Home() {
         <section className={styles.bottomEmailSection}>
           <div className={styles.bottomEmailContainer}>
             <h2 className={styles.bottomEmailTitle}>
-              내 스윙의 문제점이 궁금하다면?
+              내 스윙의 개선점이 궁금하다면?
             </h2>
             <p className={styles.bottomEmailSubtitle}>
               프로 선수와 비교해보고 핵심적인 개선점을 찾아보세요
