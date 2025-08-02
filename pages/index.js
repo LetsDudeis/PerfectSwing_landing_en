@@ -69,7 +69,7 @@ export default function Home() {
 
       if (response.ok) {
         showTopMessage(
-          "베타 체험 신청이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
+          "사전 예약이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
           "success"
         );
         setEmail("");
@@ -119,7 +119,7 @@ export default function Home() {
 
       if (response.ok) {
         showBottomMessage(
-          "베타 체험 신청이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
+          "사전 예약이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
           "success"
         );
         setEmail("");
@@ -156,23 +156,23 @@ export default function Home() {
             <div className={styles.leftSection}>
               <div className={styles.mainContent}>
                 <h1 className={styles.title}>
-                  내 테니스 스윙,
+                  테니스 영상,
                   <br />
-                  프로와 뭐가 다를까?
+                  봐도 봐도 모르겠다면?
                   <br />
                   <span className={styles.highlight}>
-                    AI 궤적 분석이 답합니다.
+                    한 눈에 내 개선점 확인하기
                   </span>
                 </h1>
 
                 <p className={styles.description}>
-                  스윙 영상을 업로드하면 AI가 프로 선수와 비교 분석해드립니다.
+                  스윙 영상을 업로드하면 AI가 프로 선수와 비교 분석합니다.
                   <br />
-                  미세한 차이점을 발견하고 명확한 개선점을 제시받으세요.
+                  숨겨진 차이점을 두 눈으로 확인하세요.
                 </p>
 
                 <div className={styles.waitlistSection}>
-                  <h3 className={styles.waitlistTitle}>베타 체험 신청</h3>
+                  <h3 className={styles.waitlistTitle}>사전 예약 신청</h3>
                   <div className={styles.launchBadge}>
                     🎾 2025년 하반기 출시 예정
                   </div>
@@ -199,7 +199,7 @@ export default function Home() {
                             : "not-allowed",
                       }}
                     >
-                      {topIsSubmitting ? "신청 중..." : "베타 체험 신청하기"}
+                      {topIsSubmitting ? "신청 중..." : "앱 출시 알림받기"}
                     </button>
                   </form>
 
@@ -224,7 +224,23 @@ export default function Home() {
             <div className={styles.rightSection}>
               <div className={styles.demoContainer}>
                 <div className={styles.phoneMockup}>
-                  <div className={styles.phoneScreen}></div>
+                  <div className={styles.phoneScreen}>
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        borderRadius: "25px",
+                      }}
+                    >
+                      <source src="/demo.mp4" type="video/mp4" />
+                      브라우저가 비디오를 지원하지 않습니다.
+                    </video>
+                  </div>
                 </div>
               </div>
             </div>
@@ -250,9 +266,9 @@ export default function Home() {
                 <div className={styles.benefitIcon}>📊</div>
                 <h3 className={styles.benefitTitle}>한눈에 보는 스윙 차이</h3>
                 <p className={styles.benefitDescription}>
-                  AI가 프로와 당신의 스윙을 정밀 비교 분석하여 차이점을 한눈에
-                  보여드립니다. 복잡한 이론 설명 없이 직관적인 시각화로
-                  이해하세요.
+                  AI가 프로와 당신의 스윙 궤적을 시각적으로 보여드립니다.
+                  <br />
+                  핵심적인 개선점을 직접 느껴보세요.
                 </p>
               </div>
 
@@ -260,18 +276,21 @@ export default function Home() {
                 <div className={styles.benefitIcon}>🏠</div>
                 <h3 className={styles.benefitTitle}>혼자서도 완벽한 분석</h3>
                 <p className={styles.benefitDescription}>
-                  박스볼이나 벽치기할 장소도 없어서 집에서 빈 스윙만 하고
-                  계시나요? 혼자 연습한 영상도 정확하게 분석해드립니다. 언제
-                  어디서든 연습하세요.
+                  벽치기할 장소도 없어서 빈 스윙만 하고 계시나요?
+                  <br />
+                  혼자 연습한 영상도 정확하게 분석해드립니다.
+                  <br />
+                  언제 어디서든 연습하세요.
                 </p>
               </div>
 
               <div className={styles.benefitCard}>
-                <div className={styles.benefitIcon}>📤</div>
-                <h3 className={styles.benefitTitle}>쉽게 공유하기</h3>
+                <div className={styles.benefitIcon}>🔒</div>
+                <h3 className={styles.benefitTitle}>100% 개인정보 보호</h3>
                 <p className={styles.benefitDescription}>
-                  분석 결과를 SNS나 친구들과 간편하게 공유하여 함께 성장하세요.
-                  개선 과정을 기록하고 성취감을 나눠보세요.
+                  업로드한 영상과 분석 결과는 오직 본인만 볼 수 있습니다.
+                  <br />
+                  개인정보는 절대 외부로 유출되지 않으며, 안전하게 보호됩니다.
                 </p>
               </div>
             </div>
@@ -281,9 +300,7 @@ export default function Home() {
         {/* Reviews Section */}
         <section className={styles.reviewsSection}>
           <div className={styles.reviewsContainer}>
-            <h2 className={styles.reviewsTitle}>
-              테니스 플레이어들의 생생한 후기
-            </h2>
+            <h2 className={styles.reviewsTitle}>사전 체험자들의 생생한 후기</h2>
 
             <div className={styles.reviewsGrid}>
               <div className={styles.reviewCard}>
@@ -291,16 +308,15 @@ export default function Home() {
                   <div className={styles.reviewerInfo}>
                     <div className={styles.reviewerAvatar}>김</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>김○○</h4>
+                      <h4 className={styles.reviewerName}>김○영</h4>
                       <p className={styles.reviewerLevel}>NTRP 3.5</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "혼자 연습할 때마다 제대로 하고 있는지 궁금했는데,
-                  PerfectSwing으로 내 스윙을 분석받고 나서 확실히 개선점을 알 수
-                  있었어요. 프로와 비교해주는 기능이 정말 신기해요!"
+                  "혼자 연습할 때마다 제대로 하고 있는지 궁금했는데, 스윙을
+                  분석받고 나서 확실히 개선점을 알 수 있었어요."
                 </p>
               </div>
 
@@ -309,14 +325,14 @@ export default function Home() {
                   <div className={styles.reviewerInfo}>
                     <div className={styles.reviewerAvatar}>박</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>박○○</h4>
+                      <h4 className={styles.reviewerName}>박○아</h4>
                       <p className={styles.reviewerLevel}>NTRP 3.0</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "코트 예약이 어려워서 집에서 빈 스윙만 하고 있었는데, 이
+                  "옆 코트로 공이 넘어갈까봐 집에서 빈 스윙만 하고 있었는데, 이
                   앱으로 그 영상도 분석받을 수 있어서 놀랐어요. 일관성 없던 제
                   스윙이 많이 안정됐어요. 언제 어디서든 피드백 받을 수 있어서
                   좋아요."
@@ -326,9 +342,9 @@ export default function Home() {
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>이</div>
+                    <div className={styles.reviewerAvatar}>정</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>이○○</h4>
+                      <h4 className={styles.reviewerName}>정○훈</h4>
                       <p className={styles.reviewerLevel}>NTRP 2.5</p>
                     </div>
                   </div>
@@ -336,8 +352,8 @@ export default function Home() {
                 </div>
                 <p className={styles.reviewText}>
                   "테니스 시작한지 6개월 정도 됐는데, 제대로 치고 있는지 확신이
-                  없었어요. PerfectSwing으로 기본기를 체크받으니까 잘못된 습관을
-                  바로잡을 수 있어서 좋네요!"
+                  없었어요. 게임 전에 스윙을 체크받으니까 잘못된 습관을 바로잡을
+                  수 있어서 좋네요!"
                 </p>
               </div>
             </div>
@@ -351,7 +367,7 @@ export default function Home() {
               내 스윙의 문제점이 궁금하다면?
             </h2>
             <p className={styles.bottomEmailSubtitle}>
-              프로 선수와 비교해보고 정확한 개선점을 찾아보세요
+              프로 선수와 비교해보고 핵심적인 개선점을 찾아보세요
             </p>
             <form
               className={styles.bottomEmailForm}
@@ -377,7 +393,7 @@ export default function Home() {
                       : "not-allowed",
                 }}
               >
-                {bottomIsSubmitting ? "처리 중..." : "베타 체험 신청하기"}
+                {bottomIsSubmitting ? "처리 중..." : "앱 출시 알림받기"}
               </button>
 
               {bottomMessage.text && (

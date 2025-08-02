@@ -171,18 +171,7 @@
   margin: 0 auto;
 }
 
-.phoneMockup::before {
-  content: "";
-  position: absolute;
-  top: 0.8rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 25px;
-  background: #1a1a1a;
-  border-radius: 15px;
-  z-index: 2;
-}
+/* 노치 제거됨 */
 
 .phoneScreen {
   background: linear-gradient(135deg, #000000, #1a1a1a);
@@ -297,7 +286,7 @@
   }
 
   .phoneMockup {
-    width: 260px;
+    width: 270px;
     height: 520px;
   }
 }
@@ -331,7 +320,7 @@
   }
 
   .phoneMockup {
-    width: 240px;
+    width: 250px;
     height: 480px;
   }
 }
