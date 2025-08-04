@@ -6,7 +6,8 @@ import styles from "../styles/Home.module.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function EnglishHome() {
-  const [email, setEmail] = useState("");
+  const [topEmail, setTopEmail] = useState("");
+  const [bottomEmail, setBottomEmail] = useState("");
   const [topIsSubmitting, setTopIsSubmitting] = useState(false);
   const [bottomIsSubmitting, setBottomIsSubmitting] = useState(false);
   const [topMessage, setTopMessage] = useState({ text: "", type: "" });
@@ -19,8 +20,9 @@ export default function EnglishHome() {
     return re.test(email);
   };
 
-  // Button enable state
-  const isButtonEnabled = validateEmail(email);
+  // Button enable states
+  const topIsButtonEnabled = validateEmail(topEmail);
+  const bottomIsButtonEnabled = validateEmail(bottomEmail);
 
   // Show top message
   const showTopMessage = (text, type) => {
@@ -42,7 +44,7 @@ export default function EnglishHome() {
   const handleTopSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(topEmail)) {
       showTopMessage("Please enter a valid email address.", "error");
       return;
     }
@@ -59,7 +61,7 @@ export default function EnglishHome() {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify({
-            email,
+            email: topEmail,
             submitted_at: new Date().toISOString(),
           }),
         }
@@ -72,7 +74,7 @@ export default function EnglishHome() {
           "You're on the waitlist! We'll notify you as soon as PerfectSwing launches.",
           "success"
         );
-        setEmail("");
+        setTopEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
         showTopMessage(data.message || "An error occurred.", "error");
@@ -89,7 +91,7 @@ export default function EnglishHome() {
   const handleBottomSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(bottomEmail)) {
       showBottomMessage("Please enter a valid email address.", "error");
       return;
     }
@@ -106,7 +108,7 @@ export default function EnglishHome() {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify({
-            email,
+            email: bottomEmail,
             submitted_at: new Date().toISOString(),
           }),
         }
@@ -119,7 +121,7 @@ export default function EnglishHome() {
           "You're on the waitlist! We'll notify you as soon as PerfectSwing launches.",
           "success"
         );
-        setEmail("");
+        setBottomEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
         showBottomMessage(data.message || "An error occurred.", "error");
@@ -216,19 +218,19 @@ export default function EnglishHome() {
                       type="email"
                       className={styles.emailInput}
                       placeholder="Your email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={topEmail}
+                      onChange={(e) => setTopEmail(e.target.value)}
                       required
                     />
                     <button
                       type="submit"
                       className={styles.submitBtn}
-                      disabled={!isButtonEnabled || topIsSubmitting}
+                      disabled={!topIsButtonEnabled || topIsSubmitting}
                       style={{
                         opacity:
-                          isButtonEnabled && !topIsSubmitting ? "1" : "0.6",
+                          topIsButtonEnabled && !topIsSubmitting ? "1" : "0.6",
                         cursor:
-                          isButtonEnabled && !topIsSubmitting
+                          topIsButtonEnabled && !topIsSubmitting
                             ? "pointer"
                             : "not-allowed",
                       }}
@@ -419,19 +421,20 @@ export default function EnglishHome() {
               <input
                 type="email"
                 placeholder="Your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={bottomEmail}
+                onChange={(e) => setBottomEmail(e.target.value)}
                 className={styles.bottomEmailInput}
                 required
               />
               <button
                 type="submit"
                 className={styles.bottomEmailButton}
-                disabled={!isButtonEnabled || bottomIsSubmitting}
+                disabled={!bottomIsButtonEnabled || bottomIsSubmitting}
                 style={{
-                  opacity: isButtonEnabled && !bottomIsSubmitting ? "1" : "0.6",
+                  opacity:
+                    bottomIsButtonEnabled && !bottomIsSubmitting ? "1" : "0.6",
                   cursor:
-                    isButtonEnabled && !bottomIsSubmitting
+                    bottomIsButtonEnabled && !bottomIsSubmitting
                       ? "pointer"
                       : "not-allowed",
                 }}

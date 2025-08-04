@@ -6,7 +6,8 @@ import styles from "../styles/Home.module.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [email, setEmail] = useState("");
+  const [topEmail, setTopEmail] = useState("");
+  const [bottomEmail, setBottomEmail] = useState("");
   const [topIsSubmitting, setTopIsSubmitting] = useState(false);
   const [bottomIsSubmitting, setBottomIsSubmitting] = useState(false);
   const [topMessage, setTopMessage] = useState({ text: "", type: "" });
@@ -20,7 +21,8 @@ export default function Home() {
   };
 
   // 버튼 활성화 상태
-  const isButtonEnabled = validateEmail(email);
+  const topIsButtonEnabled = validateEmail(topEmail);
+  const bottomIsButtonEnabled = validateEmail(bottomEmail);
 
   // 상단 메시지 표시
   const showTopMessage = (text, type) => {
@@ -42,7 +44,7 @@ export default function Home() {
   const handleTopSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(topEmail)) {
       showTopMessage("올바른 이메일 주소를 입력해주세요.", "error");
       return;
     }
@@ -59,7 +61,7 @@ export default function Home() {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify({
-            email,
+            email: topEmail,
             submitted_at: new Date().toISOString(),
           }),
         }
@@ -72,7 +74,7 @@ export default function Home() {
           "사전 예약이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
           "success"
         );
-        setEmail("");
+        setTopEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
         showTopMessage(data.message || "오류가 발생했습니다.", "error");
@@ -92,7 +94,7 @@ export default function Home() {
   const handleBottomSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
+    if (!validateEmail(bottomEmail)) {
       showBottomMessage("올바른 이메일 주소를 입력해주세요.", "error");
       return;
     }
@@ -109,7 +111,7 @@ export default function Home() {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify({
-            email,
+            email: bottomEmail,
             submitted_at: new Date().toISOString(),
           }),
         }
@@ -122,7 +124,7 @@ export default function Home() {
           "사전 예약이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
           "success"
         );
-        setEmail("");
+        setBottomEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
         showBottomMessage(data.message || "오류가 발생했습니다.", "error");
@@ -227,19 +229,19 @@ export default function Home() {
                       type="email"
                       className={styles.emailInput}
                       placeholder="이메일 주소를 입력하세요"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={topEmail}
+                      onChange={(e) => setTopEmail(e.target.value)}
                       required
                     />
                     <button
                       type="submit"
                       className={styles.submitBtn}
-                      disabled={!isButtonEnabled || topIsSubmitting}
+                      disabled={!topIsButtonEnabled || topIsSubmitting}
                       style={{
                         opacity:
-                          isButtonEnabled && !topIsSubmitting ? "1" : "0.6",
+                          topIsButtonEnabled && !topIsSubmitting ? "1" : "0.6",
                         cursor:
-                          isButtonEnabled && !topIsSubmitting
+                          topIsButtonEnabled && !topIsSubmitting
                             ? "pointer"
                             : "not-allowed",
                       }}
@@ -421,19 +423,20 @@ export default function Home() {
               <input
                 type="email"
                 placeholder="이메일 주소를 입력하세요"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={bottomEmail}
+                onChange={(e) => setBottomEmail(e.target.value)}
                 className={styles.bottomEmailInput}
                 required
               />
               <button
                 type="submit"
                 className={styles.bottomEmailButton}
-                disabled={!isButtonEnabled || bottomIsSubmitting}
+                disabled={!bottomIsButtonEnabled || bottomIsSubmitting}
                 style={{
-                  opacity: isButtonEnabled && !bottomIsSubmitting ? "1" : "0.6",
+                  opacity:
+                    bottomIsButtonEnabled && !bottomIsSubmitting ? "1" : "0.6",
                   cursor:
-                    isButtonEnabled && !bottomIsSubmitting
+                    bottomIsButtonEnabled && !bottomIsSubmitting
                       ? "pointer"
                       : "not-allowed",
                 }}
