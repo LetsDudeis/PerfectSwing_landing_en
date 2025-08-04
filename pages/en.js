@@ -153,7 +153,7 @@ export default function EnglishHome() {
         />
         <meta
           property="og:image"
-          content="https://perfect-swing.vercel.app/og-image-v2.jpg"
+          content="https://perfect-swing.vercel.app/og-image-en.jpg"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -169,7 +169,7 @@ export default function EnglishHome() {
         />
         <meta
           name="kakao:image"
-          content="https://perfect-swing.vercel.app/og-image-v2.jpg"
+          content="https://perfect-swing.vercel.app/og-image-en.jpg"
         />
 
         {/* Twitter Card meta tags */}
@@ -181,7 +181,7 @@ export default function EnglishHome() {
         />
         <meta
           name="twitter:image"
-          content="https://perfect-swing.vercel.app/og-image-v2.jpg"
+          content="https://perfect-swing.vercel.app/og-image-en.jpg"
         />
       </Head>
 
@@ -273,7 +273,7 @@ export default function EnglishHome() {
                         borderRadius: "25px",
                       }}
                     >
-                      <source src="/demo.mp4" type="video/mp4" />
+                      <source src="/demo-en.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
                   </div>
