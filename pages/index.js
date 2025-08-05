@@ -14,17 +14,17 @@ export default function Home() {
   const [bottomMessage, setBottomMessage] = useState({ text: "", type: "" });
   const [statsCount, setStatsCount] = useState(500);
 
-  // 이메일 유효성 검사
+  // Email validation
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
 
-  // 버튼 활성화 상태
+  // Button enable states
   const topIsButtonEnabled = validateEmail(topEmail);
   const bottomIsButtonEnabled = validateEmail(bottomEmail);
 
-  // 상단 메시지 표시
+  // Show top message
   const showTopMessage = (text, type) => {
     setTopMessage({ text, type });
     setTimeout(() => {
@@ -32,7 +32,7 @@ export default function Home() {
     }, 5000);
   };
 
-  // 하단 메시지 표시
+  // Show bottom message
   const showBottomMessage = (text, type) => {
     setBottomMessage({ text, type });
     setTimeout(() => {
@@ -40,12 +40,12 @@ export default function Home() {
     }, 5000);
   };
 
-  // 상단 폼 제출 처리
+  // Top form submission
   const handleTopSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(topEmail)) {
-      showTopMessage("올바른 이메일 주소를 입력해주세요.", "error");
+      showTopMessage("Please enter a valid email address.", "error");
       return;
     }
 
@@ -53,7 +53,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/collect-email`,
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/collect-email-en`,
         {
           method: "POST",
           headers: {
@@ -71,31 +71,28 @@ export default function Home() {
 
       if (response.ok) {
         showTopMessage(
-          "사전 예약이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
+          "You're on the waitlist! We'll notify you as soon as PerfectSwing launches.",
           "success"
         );
         setTopEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
-        showTopMessage(data.message || "오류가 발생했습니다.", "error");
+        showTopMessage(data.message || "An error occurred.", "error");
       }
     } catch (error) {
       console.error("Top submit error:", error);
-      showTopMessage(
-        "네트워크 오류가 발생했습니다. 다시 시도해주세요.",
-        "error"
-      );
+      showTopMessage("A network error occurred. Please try again.", "error");
     } finally {
       setTopIsSubmitting(false);
     }
   };
 
-  // 하단 폼 제출 처리
+  // Bottom form submission
   const handleBottomSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(bottomEmail)) {
-      showBottomMessage("올바른 이메일 주소를 입력해주세요.", "error");
+      showBottomMessage("Please enter a valid email address.", "error");
       return;
     }
 
@@ -103,7 +100,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/collect-email`,
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/collect-email-en`,
         {
           method: "POST",
           headers: {
@@ -121,20 +118,17 @@ export default function Home() {
 
       if (response.ok) {
         showBottomMessage(
-          "사전 예약이 완료되었습니다! 출시되면 가장 먼저 체험해보실 수 있습니다.",
+          "You're on the waitlist! We'll notify you as soon as PerfectSwing launches.",
           "success"
         );
         setBottomEmail("");
         setStatsCount((prev) => prev + 1);
       } else {
-        showBottomMessage(data.message || "오류가 발생했습니다.", "error");
+        showBottomMessage(data.message || "An error occurred.", "error");
       }
     } catch (error) {
       console.error("Bottom submit error:", error);
-      showBottomMessage(
-        "네트워크 오류가 발생했습니다. 다시 시도해주세요.",
-        "error"
-      );
+      showBottomMessage("A network error occurred. Please try again.", "error");
     } finally {
       setBottomIsSubmitting(false);
     }
@@ -143,57 +137,51 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>PerfectSwing - AI 테니스 자세 교정</title>
+        <title>Perfect Swing - AI Tennis Coach</title>
         <meta
           name="description"
-          content="테니스 스윙 궤적을 AI로 분석하여 프로 선수와 비교해주는 혁신적인 서비스"
+          content="Upload your swing video and our AI will analyze it against professional players. Discover the hidden differences for yourself."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
 
-        {/* Open Graph 메타 태그 (카카오톡 링크 공유용) */}
-        <meta
-          property="og:title"
-          content="PerfectSwing - AI 테니스 자세 교정"
-        />
+        {/* Open Graph meta tags for social sharing */}
+        <meta property="og:title" content="Perfect Swing - AI Tennis Coach" />
         <meta
           property="og:description"
-          content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
+          content="Watching tennis videos over and over but still confused? Spot your improvement points at a glance"
         />
         <meta
           property="og:image"
-          content="https://perfect-swing.vercel.app/og-image-v2.jpg"
+          content="https://perfect-swing.vercel.app/og-image-en.jpg"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="PerfectSwing" />
+        <meta property="og:site_name" content="Perfect Swing" />
         <meta property="og:url" content="https://perfect-swing.vercel.app" />
         <meta property="og:type" content="website" />
 
-        {/* 카카오톡 전용 메타 태그 */}
-        <meta name="kakao:title" content="PerfectSwing - AI 테니스 자세 교정" />
+        {/* KakaoTalk specific meta tags */}
+        <meta name="kakao:title" content="Perfect Swing - AI Tennis Coach" />
         <meta
           name="kakao:description"
-          content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
+          content="Watching tennis videos over and over but still confused? Spot your improvement points at a glance"
         />
         <meta
           name="kakao:image"
-          content="https://perfect-swing.vercel.app/og-image-v2.jpg"
+          content="https://perfect-swing.vercel.app/og-image-en.jpg"
         />
 
-        {/* Twitter Card 메타 태그 */}
+        {/* Twitter Card meta tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="PerfectSwing - AI 테니스 자세 교정"
-        />
+        <meta name="twitter:title" content="Perfect Swing - AI Tennis Coach" />
         <meta
           name="twitter:description"
-          content="테니스 영상, 봐도 봐도 모르겠다면? 한 눈에 내 개선점 확인하기"
+          content="Watching tennis videos over and over but still confused? Spot your improvement points at a glance"
         />
         <meta
           name="twitter:image"
-          content="https://perfect-swing.vercel.app/og-image-v2.jpg"
+          content="https://perfect-swing.vercel.app/og-image-en.jpg"
         />
       </Head>
 
@@ -203,32 +191,33 @@ export default function Home() {
             <div className={styles.leftSection}>
               <div className={styles.mainContent}>
                 <h1 className={styles.title}>
-                  테니스 영상,
+                  Watching tennis videos
                   <br />
-                  봐도 봐도 모르겠다면?
+                  but still confused?
                   <br />
                   <span className={styles.highlight}>
-                    한 눈에 내 개선점 확인하기
+                    Spot your improvement points at a glance
                   </span>
                 </h1>
 
                 <p className={styles.description}>
-                  스윙 영상을 업로드하면 AI가 프로 선수와 비교 분석합니다.
+                  Upload your swing video and our AI will analyze it against
+                  professional players.
                   <br />
-                  숨겨진 차이점을 두 눈으로 확인하세요.
+                  Discover the hidden differences for yourself.
                 </p>
 
                 <div className={styles.waitlistSection}>
-                  <h3 className={styles.waitlistTitle}>사전 예약 신청</h3>
+                  <h3 className={styles.waitlistTitle}>Join the waitlist</h3>
                   <div className={styles.launchBadge}>
-                    🎾 2025년 하반기 출시 예정
+                    🎾 Launch Second Half of 2025
                   </div>
 
                   <form className={styles.emailForm} onSubmit={handleTopSubmit}>
                     <input
                       type="email"
                       className={styles.emailInput}
-                      placeholder="이메일 주소를 입력하세요"
+                      placeholder="Your email address"
                       value={topEmail}
                       onChange={(e) => setTopEmail(e.target.value)}
                       required
@@ -246,7 +235,7 @@ export default function Home() {
                             : "not-allowed",
                       }}
                     >
-                      {topIsSubmitting ? "신청 중..." : "앱 출시 알림받기"}
+                      {topIsSubmitting ? "Submitting..." : "Get Early Access"}
                     </button>
                   </form>
 
@@ -284,8 +273,8 @@ export default function Home() {
                         borderRadius: "25px",
                       }}
                     >
-                      <source src="/demo.mp4" type="video/mp4" />
-                      브라우저가 비디오를 지원하지 않습니다.
+                      <source src="/demo-en.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
                     </video>
                   </div>
                 </div>
@@ -299,45 +288,51 @@ export default function Home() {
           <div className={styles.benefitsContainer}>
             <div className={styles.benefitsHeader}>
               <h2 className={styles.benefitsTitle}>
-                PerfectSwing
+                Perfect Swing
                 <br />
-                나만의 AI 테니스 코치
+                Your Personal AI Tennis Coach
               </h2>
               <p className={styles.benefitsSubtitle}>
-                스마트폰 하나로 전문가 수준의 스윙 분석을 경험해보세요
+                Get professional-level swing analysis right from your smartphone
               </p>
             </div>
 
             <div className={styles.benefitsGrid}>
               <div className={styles.benefitCard}>
                 <div className={styles.benefitIcon}>📊</div>
-                <h3 className={styles.benefitTitle}>한눈에 보는 스윙 차이</h3>
+                <h3 className={styles.benefitTitle}>
+                  See Your Swing Differences at a Glance
+                </h3>
                 <p className={styles.benefitDescription}>
-                  AI가 프로와 당신의 스윙 궤적을 시각적으로 보여드립니다.
+                  AI visually compares your swing trajectory with the pros.
                   <br />
-                  핵심적인 개선점을 직접 느껴보세요.
+                  See exactly where you need to improve.
                 </p>
               </div>
 
               <div className={styles.benefitCard}>
                 <div className={styles.benefitIcon}>🏠</div>
-                <h3 className={styles.benefitTitle}>혼자서도 완벽한 분석</h3>
+                <h3 className={styles.benefitTitle}>
+                  Perfect Analysis Even When Practicing Alone
+                </h3>
                 <p className={styles.benefitDescription}>
-                  벽치기할 장소도 없어서 빈 스윙만 하고 계시나요?
+                  Busy schedule or can't find a hitting partner?
                   <br />
-                  혼자 연습한 영상도 정확하게 분석해드립니다.
+                  No problem - we analyze your solo practice videos just as
+                  well.
                   <br />
-                  언제 어디서든 연습하세요.
+                  Practice anytime, anywhere.
                 </p>
               </div>
 
               <div className={styles.benefitCard}>
                 <div className={styles.benefitIcon}>🔒</div>
-                <h3 className={styles.benefitTitle}>100% 개인정보 보호</h3>
+                <h3 className={styles.benefitTitle}>100% Privacy Protection</h3>
                 <p className={styles.benefitDescription}>
-                  업로드한 영상과 분석 결과는 오직 본인만 볼 수 있습니다.
+                  Your uploaded videos and analysis results are only visible to
+                  you.
                   <br />
-                  개인정보는 절대 외부로 유출되지 않으며, 안전하게 보호됩니다.
+                  We never share your personal information with anyone.
                 </p>
               </div>
             </div>
@@ -347,60 +342,63 @@ export default function Home() {
         {/* Reviews Section */}
         <section className={styles.reviewsSection}>
           <div className={styles.reviewsContainer}>
-            <h2 className={styles.reviewsTitle}>사전 체험자들의 생생한 후기</h2>
+            <h2 className={styles.reviewsTitle}>
+              Real Reviews from Early Users
+            </h2>
 
             <div className={styles.reviewsGrid}>
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>김</div>
+                    <div className={styles.reviewerAvatar}>AT</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>김○영</h4>
+                      <h4 className={styles.reviewerName}>Alex Thompson</h4>
                       <p className={styles.reviewerLevel}>NTRP 3.5</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "혼자 연습할 때마다 제대로 하고 있는지 궁금했는데, 스윙을
-                  분석받고 나서 확실히 개선점을 알 수 있었어요."
+                  "I was never sure if I was practicing correctly on my own.
+                  After getting my swing analyzed, I could finally see exactly
+                  what I needed to work on."
                 </p>
               </div>
 
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>박</div>
+                    <div className={styles.reviewerAvatar}>ER</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>박○아</h4>
+                      <h4 className={styles.reviewerName}>Emma Rodriguez</h4>
                       <p className={styles.reviewerLevel}>NTRP 3.0</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "옆 코트로 공이 넘어갈까봐 집에서 빈 스윙만 하고 있었는데, 이
-                  앱으로 그 영상도 분석받을 수 있어서 놀랐어요. 일관성 없던 제
-                  스윙이 많이 안정됐어요. 언제 어디서든 피드백 받을 수 있어서
-                  좋아요."
+                  "I practice shadow swings at home when I can't get to the
+                  court. I was amazed this app could analyze those videos too!
+                  My swing consistency has improved dramatically. Having instant
+                  feedback available anytime is incredible."
                 </p>
               </div>
 
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>정</div>
+                    <div className={styles.reviewerAvatar}>JC</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>정○훈</h4>
+                      <h4 className={styles.reviewerName}>James Chen</h4>
                       <p className={styles.reviewerLevel}>NTRP 2.5</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "테니스 시작한지 6개월 정도 됐는데, 제대로 치고 있는지 확신이
-                  없었어요. 게임 전에 스윙을 체크받으니까 잘못된 습관을 바로잡을
-                  수 있어서 좋네요!"
+                  "I've been playing for about 6 months, but I never felt
+                  confident about my technique. Checking my swing before matches
+                  helps me fix bad habits immediately!"
                 </p>
               </div>
             </div>
@@ -411,10 +409,10 @@ export default function Home() {
         <section className={styles.bottomEmailSection}>
           <div className={styles.bottomEmailContainer}>
             <h2 className={styles.bottomEmailTitle}>
-              내 스윙의 개선점이 궁금하다면?
+              Ready to see what's holding back your swing?
             </h2>
             <p className={styles.bottomEmailSubtitle}>
-              프로 선수와 비교해보고 핵심적인 개선점을 찾아보세요
+              Get compared with the pros and discover your key improvement areas
             </p>
             <form
               className={styles.bottomEmailForm}
@@ -422,7 +420,7 @@ export default function Home() {
             >
               <input
                 type="email"
-                placeholder="이메일 주소를 입력하세요"
+                placeholder="Your email address"
                 value={bottomEmail}
                 onChange={(e) => setBottomEmail(e.target.value)}
                 className={styles.bottomEmailInput}
@@ -441,7 +439,7 @@ export default function Home() {
                       : "not-allowed",
                 }}
               >
-                {bottomIsSubmitting ? "처리 중..." : "앱 출시 알림받기"}
+                {bottomIsSubmitting ? "Processing..." : "Get Early Access"}
               </button>
 
               {bottomMessage.text && (
@@ -465,12 +463,12 @@ export default function Home() {
         {/* Footer */}
         <footer className={styles.footer}>
           <div className={styles.footerContainer}>
-            <h3 className={styles.footerTitle}>PerfectSwing</h3>
+            <h3 className={styles.footerTitle}>Perfect Swing</h3>
             <p className={styles.footerSubtitle}>
-              당신만의 AI 스윙 코치, 언제 어디서든 당신과 함께
+              Your personal AI tennis coach, wherever you practice
             </p>
             <p className={styles.footerCopyright}>
-              © 2025 PerfectSwing. All rights reserved.
+              © 2025 Perfect Swing. All rights reserved.
             </p>
           </div>
         </footer>
