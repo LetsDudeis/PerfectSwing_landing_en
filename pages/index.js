@@ -13,6 +13,10 @@ export default function Home() {
   const [topMessage, setTopMessage] = useState({ text: "", type: "" });
   const [bottomMessage, setBottomMessage] = useState({ text: "", type: "" });
   const [statsCount, setStatsCount] = useState(500);
+  const [showTopShareButton, setShowTopShareButton] = useState(false);
+  const [showBottomShareButton, setShowBottomShareButton] = useState(false);
+  const [topShareCopied, setTopShareCopied] = useState(false);
+  const [bottomShareCopied, setBottomShareCopied] = useState(false);
 
   // Email validation
   const validateEmail = (email) => {
@@ -38,6 +42,39 @@ export default function Home() {
     setTimeout(() => {
       setBottomMessage({ text: "", type: "" });
     }, 5000);
+  };
+
+  // Copy to clipboard function
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (err) {
+      console.error("Failed to copy to clipboard:", err);
+      return false;
+    }
+  };
+
+  // Top share link copy
+  const handleTopShare = async () => {
+    const shareUrl = window.location.origin;
+    const success = await copyToClipboard(shareUrl);
+
+    if (success) {
+      setTopShareCopied(true);
+      setTimeout(() => setTopShareCopied(false), 2000);
+    }
+  };
+
+  // Bottom share link copy
+  const handleBottomShare = async () => {
+    const shareUrl = window.location.origin;
+    const success = await copyToClipboard(shareUrl);
+
+    if (success) {
+      setBottomShareCopied(true);
+      setTimeout(() => setBottomShareCopied(false), 2000);
+    }
   };
 
   // Top form submission
@@ -74,7 +111,7 @@ export default function Home() {
           "You're on the waitlist! We'll notify you as soon as PerfectSwing launches.",
           "success"
         );
-        setTopEmail("");
+        setShowTopShareButton(true);
         setStatsCount((prev) => prev + 1);
       } else {
         showTopMessage(data.message || "An error occurred.", "error");
@@ -121,7 +158,7 @@ export default function Home() {
           "You're on the waitlist! We'll notify you as soon as PerfectSwing launches.",
           "success"
         );
-        setBottomEmail("");
+        setShowBottomShareButton(true);
         setStatsCount((prev) => prev + 1);
       } else {
         showBottomMessage(data.message || "An error occurred.", "error");
@@ -249,8 +286,56 @@ export default function Home() {
                           }`
                         ]
                       }`}
+                      style={{ textAlign: "center", marginBottom: "16px" }}
                     >
                       {topMessage.text}
+                    </div>
+                  )}
+
+                  {showTopShareButton && (
+                    <div
+                      className={styles.shareContainer}
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "8px",
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={handleTopShare}
+                        className={styles.shareButton}
+                        style={{
+                          backgroundColor: topShareCopied
+                            ? "#4CAF50"
+                            : "#007bff",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "8px",
+                          padding: "12px 24px",
+                          fontSize: "14px",
+                          fontWeight: "600",
+                          cursor: "pointer",
+                          transition: "all 0.3s ease",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: "8px",
+                        }}
+                      >
+                        {topShareCopied ? (
+                          <>
+                            <span>✅</span>
+                            Link copied!
+                          </>
+                        ) : (
+                          <>
+                            <span>🔗</span>
+                            Share with others
+                          </>
+                        )}
+                      </button>
                     </div>
                   )}
                 </div>
@@ -299,7 +384,17 @@ export default function Home() {
 
             <div className={styles.benefitsGrid}>
               <div className={styles.benefitCard}>
-                <div className={styles.benefitIcon}>📊</div>
+                <div className={styles.benefitIcon}>
+                  <img
+                    src="/swing.png"
+                    alt="Swing icon"
+                    style={{
+                      width: "60%",
+                      height: "60%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
                 <h3 className={styles.benefitTitle}>
                   See Your Swing Differences at a Glance
                 </h3>
@@ -311,7 +406,17 @@ export default function Home() {
               </div>
 
               <div className={styles.benefitCard}>
-                <div className={styles.benefitIcon}>🏠</div>
+                <div className={styles.benefitIcon}>
+                  <img
+                    src="/single-person.png"
+                    alt="Person icon"
+                    style={{
+                      width: "60%",
+                      height: "60%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
                 <h3 className={styles.benefitTitle}>
                   Perfect Analysis Even When Practicing Alone
                 </h3>
@@ -326,7 +431,17 @@ export default function Home() {
               </div>
 
               <div className={styles.benefitCard}>
-                <div className={styles.benefitIcon}>🔒</div>
+                <div className={styles.benefitIcon}>
+                  <img
+                    src="/shield.png"
+                    alt="Shield icon"
+                    style={{
+                      width: "60%",
+                      height: "60%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
                 <h3 className={styles.benefitTitle}>100% Privacy Protection</h3>
                 <p className={styles.benefitDescription}>
                   Your uploaded videos and analysis results are only visible to
@@ -452,8 +567,56 @@ export default function Home() {
                       }`
                     ]
                   }`}
+                  style={{ textAlign: "center", marginBottom: "16px" }}
                 >
                   {bottomMessage.text}
+                </div>
+              )}
+
+              {showBottomShareButton && (
+                <div
+                  className={styles.shareContainer}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: "8px",
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={handleBottomShare}
+                    className={styles.shareButton}
+                    style={{
+                      backgroundColor: bottomShareCopied
+                        ? "#4CAF50"
+                        : "#007bff",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "8px",
+                      padding: "12px 24px",
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    {bottomShareCopied ? (
+                      <>
+                        <span>✅</span>
+                        Link copied!
+                      </>
+                    ) : (
+                      <>
+                        <span>🔗</span>
+                        Share with others
+                      </>
+                    )}
+                  </button>
                 </div>
               )}
             </form>
