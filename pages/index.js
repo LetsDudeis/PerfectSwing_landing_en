@@ -465,55 +465,54 @@ export default function Home() {
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>AT</div>
+                    <div className={styles.reviewerAvatar}>SM</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>Alex Thompson</h4>
+                      <h4 className={styles.reviewerName}>Sarah Mitchell</h4>
                       <p className={styles.reviewerLevel}>NTRP 3.5</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "I was never sure if I was practicing correctly on my own.
-                  After getting my swing analyzed, I could finally see exactly
-                  what I needed to work on."
+                  "This app works great. Has really helped improve my swing by
+                  having the ability to quickly view the video analysis. Highly
+                  recommend."
                 </p>
               </div>
 
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>ER</div>
+                    <div className={styles.reviewerAvatar}>MD</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>Emma Rodriguez</h4>
+                      <h4 className={styles.reviewerName}>Michael Davis</h4>
                       <p className={styles.reviewerLevel}>NTRP 3.0</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "I practice shadow swings at home when I can't get to the
-                  court. I was amazed this app could analyze those videos too!
-                  My swing consistency has improved dramatically. Having instant
-                  feedback available anytime is incredible."
+                  "It is a very useful app for tennis players. I always take
+                  videos of myself and compare them with videos of professional
+                  players to find and correct my mistakes. It's a waste of time
+                  to practice without this app."
                 </p>
               </div>
 
               <div className={styles.reviewCard}>
                 <div className={styles.reviewHeader}>
                   <div className={styles.reviewerInfo}>
-                    <div className={styles.reviewerAvatar}>JC</div>
+                    <div className={styles.reviewerAvatar}>LW</div>
                     <div className={styles.reviewerDetails}>
-                      <h4 className={styles.reviewerName}>James Chen</h4>
+                      <h4 className={styles.reviewerName}>Lisa Wilson</h4>
                       <p className={styles.reviewerLevel}>NTRP 2.5</p>
                     </div>
                   </div>
                   <div className={styles.reviewStars}>⭐⭐⭐⭐⭐</div>
                 </div>
                 <p className={styles.reviewText}>
-                  "I've been playing for about 6 months, but I never felt
-                  confident about my technique. Checking my swing before matches
-                  helps me fix bad habits immediately!"
+                  "This app makes it very easy to compare tennis swings. I can
+                  see how this will help improve my swing very quickly."
                 </p>
               </div>
             </div>
