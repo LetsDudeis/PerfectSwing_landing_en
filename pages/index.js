@@ -629,6 +629,11 @@ export default function Home() {
             <p className={styles.footerSubtitle}>
               Your personal AI tennis coach, wherever you practice
             </p>
+            <div className={styles.footerLinks}>
+              <a href="/privacy" className={styles.footerLink}>
+                Privacy Policy
+              </a>
+            </div>
             <p className={styles.footerCopyright}>
               © 2025 Perfect Swing. All rights reserved.
             </p>

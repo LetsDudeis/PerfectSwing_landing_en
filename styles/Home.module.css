@@ -846,6 +846,25 @@
   font-weight: 400;
 }
 
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+}
+
 .footerCopyright {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.5);
