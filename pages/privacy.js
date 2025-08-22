@@ -185,8 +185,8 @@ export default function Privacy() {
                 please contact us at:
               </p>
               <div className={styles.contactInfo}>
-                <p><strong>Email:</strong> privacy@perfectswing.com</p>
-                <p><strong>Address:</strong> [Your Company Address]</p>
+                <p><strong>Email:</strong> travelfashionkorea@gmail.com</p>
+                <p><strong>Address:</strong> 12F, Post Tower, 89, Mapo-daero, Mapo-gu, Seoul, Republic of Korea</p>
               </div>
             </section>
           </div>
