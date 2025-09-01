@@ -43,151 +43,87 @@ export default function Privacy() {
         <main className={styles.main}>
           <div className={styles.content}>
             <h1 className={styles.title}>Privacy Policy</h1>
-            <p className={styles.lastUpdated}>Last updated: January 2025</p>
+            <p className={styles.lastUpdated}>Effective as of 2025-09-01</p>
+
+            <p>
+              This privacy policy applies to the Perfect Swing app (hereby referred to as "Application") for mobile devices that was created by Park Jinhong (hereby referred to as "Service Provider") as a Freemium service. This service is intended for use "AS IS".
+            </p>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>1. Introduction</h2>
-              <p>
-                Perfect Swing ("we," "our," or "us") is committed to protecting your privacy. 
-                This Privacy Policy explains how we collect, use, disclose, and safeguard your 
-                information when you use our AI tennis coaching service.
-              </p>
-            </section>
-
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>2. Information We Collect</h2>
+              <h2 className={styles.sectionTitle}>Information Collection and Use</h2>
+              <p>The Application collects information when you download and use it. This information may include information such as:</p>
+              <ul>
+                <li>Your device's Internet Protocol address (e.g. IP address)</li>
+                <li>The pages of the Application that you visit, the time and date of your visit, the time spent on those pages</li>
+                <li>The time spent on the Application</li>
+                <li>The operating system you use on your mobile device</li>
+              </ul>
               
-              <h3 className={styles.subsectionTitle}>2.1 Personal Information</h3>
-              <ul>
-                <li><strong>Email Address:</strong> When you join our waitlist, we collect your email address to notify you about our service launch.</li>
-                <li><strong>Account Information:</strong> If you create an account, we may collect your name and other profile information.</li>
-              </ul>
-
-              <h3 className={styles.subsectionTitle}>2.2 Tennis Swing Videos</h3>
-              <ul>
-                <li><strong>Uploaded Videos:</strong> When you use our service, you may upload tennis swing videos for AI analysis.</li>
-                <li><strong>Analysis Results:</strong> Our AI generates analysis reports based on your uploaded videos.</li>
-              </ul>
-
-              <h3 className={styles.subsectionTitle}>2.3 Usage Information</h3>
-              <ul>
-                <li><strong>Service Usage:</strong> We collect information about how you use our service, including features accessed and time spent.</li>
-                <li><strong>Device Information:</strong> We may collect device type, operating system, and browser information.</li>
-              </ul>
-            </section>
-
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>3. How We Use Your Information</h2>
-              <p>We use the collected information for the following purposes:</p>
-              <ul>
-                <li>Provide and maintain our AI tennis coaching service</li>
-                <li>Analyze your tennis swing videos using AI technology</li>
-                <li>Generate personalized improvement recommendations</li>
-                <li>Send you notifications about service updates and launches</li>
-                <li>Improve our service and develop new features</li>
-                <li>Respond to your inquiries and provide customer support</li>
-                <li>Ensure the security and integrity of our service</li>
-              </ul>
-            </section>
-
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>4. Data Security and Privacy</h2>
+              <p>The Application does not gather precise information about the location of your mobile device.</p>
               
-              <h3 className={styles.subsectionTitle}>4.1 Video Privacy</h3>
-              <p>
-                <strong>100% Private:</strong> Your uploaded tennis swing videos and analysis results are only visible to you. 
-                We never share your personal videos with anyone else.
-              </p>
+              <p>The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.</p>
+              
+              <p>For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information, including but not limited to None. The information that the Service Provider request will be retained by them and used as described in this privacy policy.</p>
+            </section>
 
-              <h3 className={styles.subsectionTitle}>4.2 Data Protection</h3>
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>Third Party Access</h2>
+              <p>Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.</p>
+              
+              <p>Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:</p>
               <ul>
-                <li>All data is encrypted in transit and at rest</li>
-                <li>Access to your data is strictly limited to authorized personnel</li>
-                <li>We implement industry-standard security measures</li>
-                <li>Regular security audits and updates are performed</li>
+                <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
+                <li><a href="https://www.facebook.com/about/privacy/update/printable" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <li><a href="https://expo.io/privacy" target="_blank" rel="noopener noreferrer">Expo</a></li>
+                <li><a href="https://amplitude.com/privacy" target="_blank" rel="noopener noreferrer">Amplitude</a></li>
+                <li><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat</a></li>
+              </ul>
+              
+              <p>The Service Provider may disclose User Provided and Automatically Collected Information:</p>
+              <ul>
+                <li>as required by law, such as to comply with a subpoena, or similar legal process;</li>
+                <li>when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</li>
+                <li>with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.</li>
               </ul>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>5. Data Sharing and Disclosure</h2>
-              <p>We do not sell, trade, or otherwise transfer your personal information to third parties, except:</p>
-              <ul>
-                <li>With your explicit consent</li>
-                <li>To comply with legal obligations</li>
-                <li>To protect our rights and safety</li>
-                <li>With service providers who assist in operating our service (under strict confidentiality agreements)</li>
-              </ul>
+              <h2 className={styles.sectionTitle}>Opt-Out Rights</h2>
+              <p>You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>6. Data Retention</h2>
-              <ul>
-                <li><strong>Account Data:</strong> Retained as long as your account is active</li>
-                <li><strong>Videos:</strong> Stored until you delete them or close your account</li>
-                <li><strong>Analysis Results:</strong> Kept for your reference until you choose to delete them</li>
-                <li><strong>Waitlist Information:</strong> Retained until you unsubscribe or our service launches</li>
-              </ul>
+              <h2 className={styles.sectionTitle}>Data Retention Policy</h2>
+              <p>The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at travelfashionkorea@gmail.com and they will respond in a reasonable time.</p>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>7. Your Rights</h2>
-              <p>You have the following rights regarding your personal information:</p>
-              <ul>
-                <li><strong>Access:</strong> Request a copy of your personal data</li>
-                <li><strong>Correction:</strong> Update or correct inaccurate information</li>
-                <li><strong>Deletion:</strong> Request deletion of your personal data</li>
-                <li><strong>Portability:</strong> Request transfer of your data to another service</li>
-                <li><strong>Opt-out:</strong> Unsubscribe from marketing communications</li>
-              </ul>
+              <h2 className={styles.sectionTitle}>Children</h2>
+              <p>The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.</p>
+              
+              <p>The Application does not address anyone under the age of 13. The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. In the case the Service Provider discover that a child under 13 has provided personal information, the Service Provider will immediately delete this from their servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider (travelfashionkorea@gmail.com) so that they will be able to take the necessary actions.</p>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>8. Cookies and Tracking</h2>
-              <p>
-                We use essential cookies to provide our service functionality. We do not use 
-                tracking cookies for advertising purposes. You can control cookie settings 
-                through your browser preferences.
-              </p>
+              <h2 className={styles.sectionTitle}>Security</h2>
+              <p>The Service Provider is concerned about safeguarding the confidentiality of your information. The Service Provider provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.</p>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>9. Children's Privacy</h2>
-              <p>
-                Our service is not intended for children under 13 years of age. We do not 
-                knowingly collect personal information from children under 13. If you are a 
-                parent or guardian and believe your child has provided us with personal 
-                information, please contact us.
-              </p>
+              <h2 className={styles.sectionTitle}>Changes</h2>
+              <p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
+              
+              <p>This privacy policy is effective as of 2025-09-01</p>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>10. International Data Transfers</h2>
-              <p>
-                Your information may be transferred to and processed in countries other than 
-                your own. We ensure appropriate safeguards are in place to protect your 
-                information in accordance with this Privacy Policy.
-              </p>
+              <h2 className={styles.sectionTitle}>Your Consent</h2>
+              <p>By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.</p>
             </section>
 
             <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>11. Changes to This Policy</h2>
-              <p>
-                We may update this Privacy Policy from time to time. We will notify you of 
-                any material changes by posting the new policy on this page and updating the 
-                "Last updated" date.
-              </p>
-            </section>
-
-            <section className={styles.section}>
-              <h2 className={styles.sectionTitle}>12. Contact Us</h2>
-              <p>
-                If you have any questions about this Privacy Policy or our data practices, 
-                please contact us at:
-              </p>
-              <div className={styles.contactInfo}>
-                <p><strong>Email:</strong> travelfashionkorea@gmail.com</p>
-                <p><strong>Address:</strong> 12F, Post Tower, 89, Mapo-daero, Mapo-gu, Seoul, Republic of Korea</p>
-              </div>
+              <h2 className={styles.sectionTitle}>Contact Us</h2>
+              <p>If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at travelfashionkorea@gmail.com.</p>
             </section>
           </div>
         </main>
